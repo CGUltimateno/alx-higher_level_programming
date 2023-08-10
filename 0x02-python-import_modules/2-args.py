@@ -7,6 +7,6 @@ if __name__ == "__main__":
 
     print(f"{args} {'argument' if args == 1 else 'arguments'}", end="")
     print(f"{'.' if args == 0 else ':'}")
-    while(i <= args):
+    while (i <= args):
         print(f"{i}: {argv[i]}")
         i += 1
