@@ -2,12 +2,8 @@
 from sys import argv
 
 if __name__ == "__main__":
-    i = 1
+    import sys
     result = 0
-    arguments = len(argv) - 1
-
-    if (arguments != 0):
-        while (i <= arguments):
-            result += int(argv[i])
-            i += 1
-    print(result)
+    for i in range(len(sys.argv) - 1):
+        result += int(sys.argv[i+1])
+        print("{}".format(result))
