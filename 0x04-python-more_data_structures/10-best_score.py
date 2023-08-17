@@ -4,7 +4,7 @@ def best_score(a_dictionary):
         return None
 
     res = list(a_dictionary.keys()[0])
-    larg = a_dictionary[key]
+    larg = a_dictionary[res]
     for k,v in a_dictionary.items():
         if v > larg:
             larg = v
