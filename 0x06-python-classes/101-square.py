@@ -14,6 +14,11 @@ class Square:
         self.size = size
         self.position = position
 
+    @property
+    def size(self):
+        """Get/set the current size of the square."""
+        return (self.__size)
+
     @size.setter
     def size(self, value):
         """Get/set for the size private attribute"""
