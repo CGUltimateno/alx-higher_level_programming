@@ -3,36 +3,37 @@
 
 
 class Node:
-    """Node in singly linked list"""
+    """Represent a node in a singly-linked list."""
 
     def __init__(self, data, next_node=None):
-        """Init a Node.
+        """ Init a new Node.
         Args:
-            data (int): The data of the Node.
-            next_node (Node): The next node of the Node.
+            data (int): The data of the new Node.
+            next_node (Node): The next node of the new Node.
         """
         self.data = data
         self.next_node = next_node
 
     @property
     def data(self):
+        """Get/set the data of the Node."""
         return self.__data
 
     @data.setter
     def data(self, value):
-        if type(value) is not int:
+        if not isinstance(value, int):
             raise TypeError("data must be an integer")
-        self._data = value
+        self.__data = value
 
     @property
     def next_node(self):
-        """Get/set the next_node of a node"""
+        """Get/set the next_node of Node."""
         return self.__next_node
 
     @next_node.setter
     def next_node(self, value):
-        if type(value) is not Node and value is not None:
-            raise TypeError("next_node must be a node")
+        if not isinstance(value, Node) and value is not None:
+            raise TypeError("next_node must be a Node object")
         self.__next_node = value
 
 
@@ -40,7 +41,7 @@ class SinglyLinkedList:
     """Represent a singly-linked list."""
 
     def __init__(self):
-        """Init a SinglyLinkedList."""
+        """Initalize a new SinglyLinkedList."""
         self.__head = None
 
     def sorted_insert(self, value):
@@ -73,3 +74,4 @@ class SinglyLinkedList:
                 values.append(str(temp.data))
                 temp = temp.next_node
             return ('\n'.join(values))
+
