@@ -6,7 +6,7 @@ import sys
 def init_board(n):
     """Init a `n`x`n sized chessboard"""
     board = []
-    [board.append() for i in range(n)]
+    [board.append([]) for i in range(n)]
     [row.append(' ') for i in range(n) for row in board]
     return board
 
@@ -66,17 +66,17 @@ def xout(board, row, col):
 
 
 def recursive_solve(board, row, queens, solutions):
-    """recursive solves an n-queens puzzle"""
+    """Recursively solve an N-queens puzzle."""
     if queens == len(board):
         solutions.append(get_solution(board))
         return solutions
 
     for c in range(len(board)):
         if board[row][c] == " ":
-            temp_board = board_deepcopy(board)
-            temp_board[row][c] = "Q"
-            xout(temp_board, row, c)
-            solutions = recursive_solve(temp_board, row + 1,
+            tmp_board = board_deepcopy(board)
+            tmp_board[row][c] = "Q"
+            xout(tmp_board, row, c)
+            solutions = recursive_solve(tmp_board, row + 1,
                                         queens + 1, solutions)
 
     return solutions
