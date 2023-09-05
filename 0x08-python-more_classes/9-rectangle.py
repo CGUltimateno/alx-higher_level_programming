@@ -19,7 +19,6 @@ class Rectangle:
         """Get width"""
         return self.__width
 
-
     @width.setter
     def width(self, value):
         if not isinstance(value, int):
@@ -40,7 +39,6 @@ class Rectangle:
         if value < 0:
             raise ValueError("height must be >= 0")
         self.__height = value
-
 
     def area(self):
         """Return area of silly rectangle"""
