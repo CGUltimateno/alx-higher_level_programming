@@ -1,11 +1,10 @@
 #!/usr/bin/python3
 """unitest for max_integer"""
 import unittest
-
 max_integer = __import__('6-max_integer.py').max_integer
 
 
-class Test(unittest.TestCase):
+class TestMaxInteger(unittest.TestCase):
     def test_first(self):
         res = max_integer([3, 4, 5, 6, 2])
         self.assertEqual(res, 6)
