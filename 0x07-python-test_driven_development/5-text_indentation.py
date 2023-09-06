@@ -9,7 +9,7 @@ def text_indentation(text):
     2 new lines after each of these characters:
     ., ? and :"""
 
-    if isinstance(text, str):
+    if not isinstance(text, str):
         raise TypeError("text must be a string")
 
     nl = True
