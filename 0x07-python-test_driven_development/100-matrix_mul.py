@@ -27,28 +27,29 @@ def matrix_mul(m_a, m_b):
                for ele in [num for row in m_b for num in row]):
         raise TypeError("m_b should contain only integers or floats")
 
-    if not all(len(row) ==  len(m_a[0]) for row in m_a):
+    if not all(len(row) == len(m_a[0]) for row in m_a):
         raise TypeError("each row of m_a must should be of the same size")
-    if not all(len(row) ==  len(m_a[0]) for row in m_b):
+    if not all(len(row) == len(m_b[0]) for row in m_b):
         raise TypeError("each row of m_b must should be of the same size")
 
     if len(m_a[0]) != len(m_b):
         raise ValueError("m_a and m_b can't be multiplied")
 
-    inv_b = []
+    inverted_b = []
     for r in range(len(m_b[0])):
         new_row = []
-        for x in range(len(m_b)):
-            new_row.append(m_b[x][r])
-        inv_b.append(new_row)
+        for c in range(len(m_b)):
+            new_row.append(m_b[c][r])
+        inverted_b.append(new_row)
 
-    mat = []
+    new_matrix = []
     for row in m_a:
         new_row = []
-        for col in inv_b:
-            pd = 0
-            for i in range(len(inv_b[0])):
-                pd += row[i] * col[i]
-            new_row.append(pd)
-        mat.append(new_row)
-    return mat
+        for col in inverted_b:
+            prod = 0
+            for i in range(len(inverted_b[0])):
+                prod += row[i] * col[i]
+            new_row.append(prod)
+        new_matrix.append(new_row)
+
+    return new_matrix
