@@ -126,7 +126,7 @@ A combo example:
 Invalid Text
 ============
 
-The paramter ``text`` must be a string. Otherwise, a TypeError is raised.
+The parameter ``text`` must be a string. Otherwise, a TypeError is raised.
 
 ::
 
