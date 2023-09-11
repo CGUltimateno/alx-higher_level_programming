@@ -3,8 +3,10 @@
 
 prevsquare = __import__('10-square').Square
 
+
 class Square(prevsquare):
     """Represent a square."""
+
     def __init__(self, size):
         """Initialize a new square."""
         super().__init__(size)
