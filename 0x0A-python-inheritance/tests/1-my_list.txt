@@ -22,7 +22,7 @@ Checking for empty list:
 	  >>> l.print_sorted()
 	  []
 
-Checking that appendng works:
+Checking that appending works:
 	  >>> l.append(1)
 	  >>> l.append(2)
 	  >>> l.append(3)
