@@ -12,5 +12,6 @@ class Student:
         self.age = age
 
     def to_json(self):
-        """Function that returns the dictionary description with simple data structure"""
+        """Function that returns the dictionary
+        description with simple data structure"""
         return self.__dict__
