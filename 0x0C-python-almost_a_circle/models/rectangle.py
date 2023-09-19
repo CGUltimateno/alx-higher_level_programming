@@ -71,14 +71,6 @@ class Rectangle(Base):
             raise ValueError("y must be >= 0")
         self.__y = value
 
-    def __str__(self):
-        """ Returns string representation """
-        return (
-            f"[Rectangle] ({self.id}) "
-            f"{self.__x}/{self.__y} - "
-            f"{self.__width}/{self.__height}"
-        )
-
     def area(self):
         """ Returns area of rectangle """
         return self.__width * self.__height
@@ -95,56 +87,42 @@ class Rectangle(Base):
             [print("#", end="") for j in range(self.__width)]
             print("")
 
-        def update(self, *args, **kwargs):
-            """ Updates attributes """
-            if args and len(args) != 0:
-                attrs = 0
-                for i in args:
-                    if attrs == 0:
-                        if i is None:
-                            self.__init__(self.width,
-                                          self.height,
-                                          self.x,
-                                          self.y)
-                        else:
-                            self.id = i
-                    elif attrs == 1:
-                        self.width = i
-                    elif attrs == 2:
-                        self.height = i
-                    elif attrs == 3:
-                        self.x = i
-                    elif attrs == 4:
-                        self.y = i
-                    attrs += 1
+    def update(self, *args, **kwargs):
+        """Updates the properties of rectangle"""
+        args_len = len(args)
 
-            elif kwargs and len(kwargs) != 0:
-                for key, value in kwargs.items():
-                    if key == "id":
-                        if value is None:
-                            self.__init__(self.width,
-                                          self.height,
-                                          self.x,
-                                          self.y)
-                        else:
-                            self.id = value
-                    elif key == "width":
-                        self.width = value
-                    elif key == "height":
-                        self.height = value
-                    elif key == "x":
-                        self.x = value
-                    elif key == "y":
-                        self.y = value
+        if args is not None and args_len > 0:
+            if args_len > 0:
+                if args_len >= 1:
+                    self.id = args[0]
+                if args_len >= 2:
+                    self.width = args[1]
+                if args_len >= 3:
+                    self.height = args[2]
+                if args_len >= 4:
+                    self.x = args[3]
+                if args_len >= 5:
+                    self.y = args[4]
 
-        def to_dictionary(self):
-            """ Returns dictionary representation """
-            return {
-                "id": self.id,
-                "width": self.width,
-                "height": self.height,
-                "x": self.x,
-                "y": self.y
-            }
+            return
 
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
+    def to_dictionary(self):
+        """ Returns dictionary representation """
+        return {
+            "id": self.id,
+            "width": self.width,
+            "height": self.height,
+            "x": self.x,
+            "y": self.y
+        }
+
+    def __str__(self):
+        """ Returns string representation """
+        return (
+            f"[Rectangle] ({self.id}) "
+            f"{self.__x}/{self.__y} - "
+            f"{self.__width}/{self.__height}"
+        )
