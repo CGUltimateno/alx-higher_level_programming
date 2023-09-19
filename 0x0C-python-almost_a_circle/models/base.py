@@ -65,9 +65,8 @@ class Base:
                 for dict in list_dicts:
                     list_instances.append(cls.create(**dict))
                 return list_instances
-        except:
+        except IOError:
             return []
-
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
@@ -101,7 +100,6 @@ class Base:
                 return [cls.create(**d) for d in list_dicts]
         except IOError:
             return []
-
 
     @staticmethod
     def draw(list_rectangles, list_squares):
