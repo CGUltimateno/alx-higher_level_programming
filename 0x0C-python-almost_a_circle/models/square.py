@@ -27,22 +27,15 @@ class Square(Rectangle):
                                                  self.width)
 
     def update(self, *args, **kwargs):
-        """ Assigns an argument to each attribute """
-        if args and len(args) != 0:
-            x = 0
-            for i in args:
-                if x == 0:
-                    if i is None:
-                        self.id = self.id
-                    else:
-                        self.id = i
-                elif x == 1:
-                    self.size = i
-                elif x == 2:
-                    self.x = i
-                elif x == 3:
-                    self.y = i
-                x += 1
+        """assigns an argument to each attribute"""
+        if args:
+            attrs = ["id", "size", "x", "y"]
+            for i, arg in enumerate(args):
+                if i < len(attrs):
+                    setattr(self, attrs[i], arg)
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
 
     def to_dictionary(self):
         """ Returns the dictionary representation of a Square """
