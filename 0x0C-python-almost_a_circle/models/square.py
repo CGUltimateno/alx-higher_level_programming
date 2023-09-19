@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 """ Square class """
-from models.rectangle import Rectangle
+from rectangle import Rectangle
+
 
 class Square(Rectangle):
     """ Square class """
+
     def __init__(self, size, x=0, y=0, id=None):
         """ Constructor """
         super().__init__(size, size, x, y, id)
@@ -11,7 +13,7 @@ class Square(Rectangle):
     @property
     def size(self):
         """ Getter """
-        return self.width
+        return self.__width
 
     @size.setter
     def size(self, value):
@@ -45,4 +47,3 @@ class Square(Rectangle):
     def to_dictionary(self):
         """ Returns the dictionary representation of a Square """
         return {"id": self.id, "size": self.width, "x": self.x, "y": self.y}
-
