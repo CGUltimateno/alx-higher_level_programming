@@ -20,39 +20,41 @@ class Base:
     @staticmethod
     def to_json_string(list_dictionaries):
         """ Returns the JSON string representation of list_dictionaries """
-        if list_dictionaries is None or list_dictionaries == []:
+        if (list_dictionaries is None or
+                len(list_dictionaries) == 0):
             return "[]"
+
         return json.dumps(list_dictionaries)
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """Save the list_dictionaries"""
+        """Saves to a file the JSON string representation of list_objs"""
         filename = cls.__name__ + ".json"
-        with open(filename, "w") as json_file:
-            if list_objs is None:
-                json_file.write("[]")
-            else:
-                list_dicts = []
-                for obj in list_objs:
-                    list_dicts.append(obj.to_dictionary())
-                json_file.write(Base.to_json_string(list_dicts))
+        json_list = [obj.to_dictionary() for obj in list_objs]
+        json_string = cls.to_json_string(json_list)
+
+        with open(filename, "w") as file:
+            file.write(json_string)
 
     @staticmethod
     def from_json_string(json_string):
         """ Returns the list of the JSON string representation json_string """
-        if json_string is None or json_string == "":
+        if json_string is None or len(json_string) == "":
             return []
         return json.loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
-        """ Returns an instance with all attributes already set """
+        """Returns an instance with all attributes already set"""
         if cls.__name__ == "Rectangle":
-            dummy = cls(1, 1)
+            dummy_instance = cls(1, 1)
         elif cls.__name__ == "Square":
-            dummy = cls(1)
-        dummy.update(**dictionary)
-        return dummy
+            dummy_instance = cls(1)
+        else:
+            dummy_instance = cls()
+
+        dummy_instance.update(**dictionary)
+        return dummy_instance
 
     @classmethod
     def load_from_file(cls):
@@ -87,18 +89,13 @@ class Base:
     @classmethod
     def load_from_file_csv(cls):
         """ Load from file in csv format """
-        filename = cls.__name__ + ".csv"
+        filename = cls.__name__ + ".json"
         try:
-            with open(filename, "r", newline="") as csvfile:
-                if cls.__name__ == "Rectangle":
-                    fieldnames = ["id", "width", "height", "x", "y"]
-                elif cls.__name__ == "Square":
-                    fieldnames = ["id", "size", "x", "y"]
-                reader = csv.DictReader(csvfile, fieldnames=fieldnames)
-                list_dicts = [dict([k, int(v)] for k, v in row.items())
-                              for row in reader]
-                return [cls.create(**d) for d in list_dicts]
-        except IOError:
+            with open(filename, "r") as file:
+                json_data = file.read()
+                obj_list = cls.from_json_string(json_data)
+                return [cls.create(**obj_dict) for obj_dict in obj_list]
+        except FileNotFoundError:
             return []
 
     @staticmethod
