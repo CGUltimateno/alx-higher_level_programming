@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 """ Rectangle class """
-from models.base import Base
+from .base import Base
+
 
 class Rectangle(Base):
     """ Rectangle class """
+
     def __init__(self, width, height, x=0, y=0, id=None):
         """ Constructor """
         super().__init__(id)
@@ -54,7 +56,6 @@ class Rectangle(Base):
         if value < 0:
             raise ValueError("x must be >= 0")
         self.__x = value
-
 
     @property
     def y(self):
@@ -122,11 +123,20 @@ class Rectangle(Base):
                     elif key == "y":
                         self.y = value
 
-
         def to_dictionary(self):
             """ Returns dictionary representation """
-            return {"id": self.id, "width": self.width, "height": self.height, "x": self.x, "y": self.y}
+            return {
+                "id": self.id,
+                "width": self.width,
+                "height": self.height,
+                "x": self.x,
+                "y": self.y
+            }
 
         def __str__(self):
             """ Returns string representation """
-            return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height)
+            return (
+                f"[Rectangle] ({self.id}) "
+                f"{self.__x}/{self.__y} - "
+                f"{self.__width}/{self.__height}"
+            )
