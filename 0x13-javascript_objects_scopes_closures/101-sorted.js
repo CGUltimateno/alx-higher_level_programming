@@ -1,9 +1,9 @@
 #!/usr/bin/node
-const { list } = require('./101-data').list;
+const list  = require('./101-data').list;
 const users = Object.values(list);
 const set = new Set(users);
 const setaslist = Array.from(set);
-const entries = Object.entries(dict);
+const entries = Object.entries(list);
 const newDict = {};
 let i = [];
 
