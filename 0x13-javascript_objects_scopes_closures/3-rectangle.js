@@ -9,8 +9,8 @@ module.exports = class Rectangle {
   }
 
   print () {
-    const i = 0;
-    for (let i = 0; i < this.height; i++) {
+    let i = 0;
+    for (i = 0; i < this.height; i++) {
       console.log('X'.repeat(this.width));
     }
   }
