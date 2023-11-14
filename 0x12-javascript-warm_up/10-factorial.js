@@ -7,3 +7,6 @@ function factorial (n) {
 
 
 }
+const inputArgument = process.argv[2];
+const inputNumber = parseInt(inputArgument);
+console.log(`Factorial of ${inputNumber} is: ${calculateFactorial(inputNumber)}`);
