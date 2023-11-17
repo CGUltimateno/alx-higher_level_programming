@@ -14,7 +14,7 @@ if __name__ == "__main__":
 
     with Session() as session:
         state = session.query(State).filter(State.name == argv[4])
-        if (state.count() == 0):
+        if state.count() == 0:
             print("Not found")
         else:
             for state in states:
