@@ -13,5 +13,6 @@ if __name__ == "__main__":
     Session = sessionmaker(engine)
 
     with Session() as session:
-        for city in session.query(City):
-            print("{}: ({}) {}".format(city.state.name, city.id, city.name))
+        city = session.query(City)
+        for city in city:
+            print(f"{city.state.name}: ({city.id}) {city.name}")
