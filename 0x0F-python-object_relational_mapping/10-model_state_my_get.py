@@ -13,10 +13,10 @@ if __name__ == "__main__":
     Session = sessionmaker(engine)
 
     with Session() as session:
-        state = session.query(State).filter(
+        states = session.query(State).filter(
             State.name == argv[4])
-        if state.count() == 0:
+        if states.count() == 0:
             print("Not found")
         else:
             for state in states:
-                print(f"{state.id}")
+                print(state.id)

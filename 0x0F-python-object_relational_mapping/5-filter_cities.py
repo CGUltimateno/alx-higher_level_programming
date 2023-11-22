@@ -7,13 +7,8 @@ import MySQLdb
 if __name__ == "__main__":
     db = MySQLdb.connect(db=argv[3])
     cur = db.cursor()
-    cur.execute("""SELECT ct.id, 
-    ct.name FROM cities 
-    ct LEFT JOIN
-    states st 
-    ON st.id = ct.state_id 
-    WHERE st.name=%s  
-    ORDER BY ct.id ASC"""
+    cur.execute("""SELECT ct.id, ct.name FROM cities ct LEFT JOIN
+    states st ON st.id = ct.state_id WHERE st.name=%s  ORDER BY ct.id ASC"""
                 .format(argv[4]))
     print(', '.join([rec[1] for rec in cur.fetchall()]))
     cur.close()
