@@ -7,7 +7,7 @@ if __name__ == "__main__":
     db = MySQLdb.connect(db=argv[3])
     cur = db.cursor()
     cur.execute("""SELECT id, name FROM states
-                WHERE BINARY 
+                WHERE BINARY
                 name = %s;""", (argv[4],))
     rows = cur.fetchall()
     for row in rows:
