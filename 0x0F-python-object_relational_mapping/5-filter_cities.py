@@ -7,14 +7,13 @@ import MySQLdb
 if __name__ == "__main__":
     db = MySQLdb.connect(db=argv[3])
     cur = db.cursor()
-    cur.execute("SELECT cities.name\
+    cur.execute("SELECT cities.id, cities.name\
                     FROM cities\
-                    INNER JOIN states\
-                    ON cities.state_id  = state_id\
-                    WHERE states.name = %s;"
+                    LEFT JOIN states\
+                    ON cities.state_id  = states.id\
+                    WHERE states.name = %s; ORDER by cities.id"
                 .format(argv[4]))
 
-    for row in cur.fetchall():
-        cities += f"{row[0]}, "
+    print(', '.join([rec[1] for rec in cur.fetchall()]))
     cur.close()
     db.close()
