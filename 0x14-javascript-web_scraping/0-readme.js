@@ -4,12 +4,14 @@
  */
 
 const fs = require('fs');
-const file = process.argv[2];
+const { argv } = require('process');
 
-fs.readFile(file, 'utf8', (err, data) => {
+if (argv.length === 3) {
+  fs.readFile(argv[2], 'utf-8', (err, data) => {
     if (err) {
-        console.error(err);
-        return;
+      console.log(err);
+    } else {
+      console.log(data.toString());
     }
-    console.log(data);
+  });
 }
